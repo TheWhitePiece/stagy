@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Image Steganography{% endblock %}
+{% block content %}
+<h2>Image Steganography</h2>
+<form method="post" action="{{ url_for('image_steganography') }}" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="cover_image" class="form-label">Cover Image:</label>
+        <input type="file" class="form-control" name="cover_image" id="cover_image" required>
+    </div>
+    <div class="mb-3">
+        <label for="text_data" class="form-label">Text to Encode:</label>
+        <textarea class="form-control" name="text_data" id="text_data" rows="4" required></textarea>
+    </div>
+    <input type="hidden" name="operation" value="encode">
+    <button type="submit" class="btn btn-primary">Encode Image</button>
+</form>
+<hr>
+<form method="post" action="{{ url_for('image_steganography') }}" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="stego_image" class="form-label">Image to Decode:</label>
+        <input type="file" class="form-control" name="stego_image" id="stego_image" required>
+    </div>
+    <input type="hidden" name="operation" value="decode">
+    <button type="submit" class="btn btn-secondary">Decode Image</button>
+</form>
+{% if decoded_text %}
+<div class="alert alert-info mt-3">
+    <strong>Decoded Text:</strong> {{ decoded_text }}
+</div>
+{% endif %}
+{% endblock %}

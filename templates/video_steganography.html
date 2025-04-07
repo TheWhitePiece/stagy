@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Video Steganography{% endblock %}
+{% block content %}
+<h2>Video Steganography</h2>
+<form method="post" action="{{ url_for('video_steganography') }}" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="video_file" class="form-label">Video File:</label>
+        <input type="file" class="form-control" name="video_file" id="video_file" required>
+    </div>
+    <div class="mb-3">
+        <label for="text_data" class="form-label">Text to Encode:</label>
+        <textarea class="form-control" name="text_data" id="text_data" rows="4" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="frame_number" class="form-label">Frame Number:</label>
+        <input type="number" class="form-control" name="frame_number" id="frame_number" required>
+    </div>
+    <div class="mb-3">
+        <label for="encryption_key" class="form-label">Encryption Key:</label>
+        <input type="text" class="form-control" name="encryption_key" id="encryption_key" required>
+    </div>
+    <input type="hidden" name="operation" value="encode">
+    <button type="submit" class="btn btn-primary">Encode Video</button>
+</form>
+<hr>
+<form method="post" action="{{ url_for('video_steganography') }}" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="stego_video" class="form-label">Video File to Decode:</label>
+        <input type="file" class="form-control" name="stego_video" id="stego_video" required>
+    </div>
+    <div class="mb-3">
+        <label for="frame_number" class="form-label">Frame Number:</label>
+        <input type="number" class="form-control" name="frame_number" id="frame_number" required>
+    </div>
+    <div class="mb-3">
+        <label for="decryption_key" class="form-label">Decryption Key:</label>
+        <input type="text" class="form-control" name="decryption_key" id="decryption_key" required>
+    </div>
+    <input type="hidden" name="operation" value="decode">
+    <button type="submit" class="btn btn-secondary">Decode Video</button>
+</form>
+{% if decoded_text %}
+<div class="alert alert-info mt-3">
+    <strong>Decoded Text:</strong> {{ decoded_text }}
+</div>
+{% endif %}
+{% endblock %}

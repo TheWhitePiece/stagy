@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Activity Logs{% endblock %}
+{% block content %}
+<h2>Activity Logs</h2>
+{% if logs %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Activity</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.username }}</td>
+            <td>{{ log.activity }}</td>
+            <td>{{ log.status }}</td>
+            <td>{{ log.details }}</td>
+            <td>{{ log.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No activity logs available.</p>
+{% endif %}
+{% endblock %}

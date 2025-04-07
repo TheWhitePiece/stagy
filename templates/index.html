@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}SteganoSafe - Secure Steganography{% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <h1 class="display-4">Welcome to SteganoSafe</h1>
+    <p class="lead">A secure platform for hiding confidential data using steganography techniques.</p>
+    <hr class="my-4">
+    <p>SteganoSafe provides advanced tools for hiding information within text, images, audio, and video files.</p>
+    {% if not session.username %}
+    <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}">Get Started</a>
+    {% else %}
+    <a class="btn btn-primary btn-lg" href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Text Steganography</h5>
+                <p class="card-text">Hide messages within text documents using zero-width character encoding techniques.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Image Steganography</h5>
+                <p class="card-text">Conceal data within image files by modifying the least significant bits of pixel
+                    values.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Audio Steganography</h5>
+                <p class="card-text">Embed secret information in audio files without noticeable changes to sound
+                    quality.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Video Steganography</h5>
+                <p class="card-text">Hide encrypted messages within specific frames of video files for maximum security.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <h3>What is Steganography?</h3>
+        <p>
+            Steganography is the practice of concealing information within other non-secret data or a physical object.
+            Unlike encryption, which makes data unreadable, steganography hides the existence of the secret
+            communication itself.
+        </p>
+        <p>
+            Our application employs modern steganographic techniques to provide secure communications while maintaining
+            the appearance of normal, innocent files.
+        </p>
+    </div>
+    <div class="col-md-6">
+        <h3>Security Features</h3>
+        <ul>
+            <li>Multi-factor authentication options</li>
+            <li>End-to-end encryption for all steganographic operations</li>
+            <li>Secure user management system</li>
+            <li>Comprehensive activity logging</li>
+            <li>Data validation and sanitization</li>
+            <li>Protection against common web vulnerabilities</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

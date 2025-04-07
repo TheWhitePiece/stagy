@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Audio Steganography{% endblock %}
+{% block content %}
+<h2>Audio Steganography</h2>
+<form method="post" action="audio_steganography.html" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="audio_file" class="form-label">Audio File:</label>
+        <input type="file" class="form-control" name="audio_file" id="audio_file" required>
+    </div>
+    <div class="mb-3">
+        <label for="text_data" class="form-label">Text to Encode:</label>
+        <textarea class="form-control" name="text_data" id="text_data" rows="4" required></textarea>
+    </div>
+    <input type="hidden" name="operation" value="encode">
+    <button type="submit" class="btn btn-primary">Encode Audio</button>
+</form>
+<hr>
+<form method="post" action="{{ url_for('audio_steganography') }}" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="stego_audio" class="form-label">Audio File to Decode:</label>
+        <input type="file" class="form-control" name="stego_audio" id="stego_audio" required>
+    </div>
+    <input type="hidden" name="operation" value="decode">
+    <button type="submit" class="btn btn-secondary">Decode Audio</button>
+</form>
+{% if decoded_text %}
+<div class="alert alert-info mt-3">
+    <strong>Decoded Text:</strong> {{ decoded_text }}
+</div>
+{% endif %}
+{% endblock %}
