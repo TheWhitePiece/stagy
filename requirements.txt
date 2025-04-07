@@ -1,0 +1,5 @@
+Flask
+Werkzeug
+numpy
+opencv-python
+cryptography
