@@ -778,4 +778,6 @@ def inject_now():
 
 if __name__ == '__main__':
     # In production, use proper WSGI server and enable HTTPS
-    app.run(debug=False, ssl_context='adhoc')  # 'adhoc' creates a self-signed cert for testing
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host = '0.0.0.0' ,port =port)
+    # app.run(debug=False, ssl_context='adhoc')  # 'adhoc' creates a self-signed cert for testing
